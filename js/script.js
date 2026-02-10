@@ -101,7 +101,7 @@ $(function () {
       // ロゴアニメーション終了後にローディング終了
       setTimeout(() => {
         loadingStop();
-      }, 3500); // delay: 2s + duration: 1.2s + margin
+      }, 1500);
       sessionStorage.setItem('isFirstLoad', 'true');
     } else {
       loading.style.display = 'none';
