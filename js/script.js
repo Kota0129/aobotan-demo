@@ -62,59 +62,6 @@ $(function () {
     $('.header__nav-wrapper').toggleClass('is-active');
     $('body').toggleClass('is-fixed');
   });
-  // ========================
-  // ローディング
-  // ========================
-  function loadingStop() {
-    const loading = document.getElementById('loading');
-    loading.classList.add('loadingNone'); // フェードアウト開始
-  
-    setTimeout(() => {
-      loading.style.display = 'none'; // 完全非表示
-  
-      // ローディング完了後処理
-      document.body.classList.add('loaded');
-  
-      // トップページのみ .fv__image にアニメーション
-      if (document.body.classList.contains('page-top')) {
-        const fvImage = document.querySelector('.fv__image');
-        if (fvImage) {
-          fvImage.classList.add('is-animate');
-        }
-      }
-    }, 1000); // opacity transition時間に合わせる
-  }
-  
-  window.addEventListener('load', function () {
-    const isFirstLoad = sessionStorage.getItem('isFirstLoad');
-    const loading = document.getElementById('loading');
-    const logo = loading.querySelector('img');
-  
-    if (!isFirstLoad) {
-      loading.style.display = 'block';
-  
-      // 再生確実化：一度外して再付与
-      logo.classList.remove('fadeup');
-      void logo.offsetWidth;
-      logo.classList.add('fadeup');
-  
-      // ロゴアニメーション終了後にローディング終了
-      setTimeout(() => {
-        loadingStop();
-      }, 1500);
-      sessionStorage.setItem('isFirstLoad', 'true');
-    } else {
-      loading.style.display = 'none';
-      document.body.classList.add('loaded');
-      
-      if (document.body.classList.contains('page-top')) {
-        const fvImage = document.querySelector('.fv__image');
-        if (fvImage) {
-          fvImage.classList.add('is-animate');
-        }
-      }
-    }
-  });
 
   // ========================
   // フォームのバリデーション（Vanilla JS）

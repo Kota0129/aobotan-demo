@@ -22,8 +22,130 @@
   <link rel="stylesheet" type="text/css" href="css/slick.css"/>
   <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    if (sessionStorage.getItem('isFirstLoad')) {
+      document.documentElement.classList.add('is-second-load');
+    }
+  </script>
+  <style>
+    /* =========================
+      ローディング
+    ========================= */
+    #loading {
+      display: block;
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      z-index: 99999;
+    }
+
+    #loading_box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #loading .kvArea {
+      width: 100%;
+    }
+    #loading .img_box {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    #loading .img_box img {
+      width: 100%;
+      display: block;
+    }
+
+    .fadeup {
+      animation-name: fadeUpAnime;
+      animation-duration: 1.2s;
+      animation-delay: 1.2s;
+      animation-fill-mode: forwards;
+      opacity: 1;
+    }
+    @keyframes fadeUpAnime {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-100px);
+      }
+    }
+    /* 2回目以降は、JSの読み込みを待たずに即座に非表示にする */
+    .is-second-load #loading {
+      display: none !important;
+    }
+
+    /* 本編の非表示設定（opacity:0など）も強制的に解除する */
+    .is-second-load body.is-loading > *:not(#loading) {
+      opacity: 1 !important;
+    }
+  </style>
+  <script>
+    // ========================
+    // ローディング
+    // ========================
+    function loadingStop() {
+    const loading = document.getElementById('loading');
+    loading.classList.add('loadingNone'); // 繝輔ぉ繝ｼ繝峨い繧ｦ繝磯幕蟋�
+  
+    setTimeout(() => {
+      loading.style.display = 'none'; // 螳悟�髱櫁｡ｨ遉ｺ
+  
+      // 繝ｭ繝ｼ繝�ぅ繝ｳ繧ｰ螳御ｺ�ｾ悟�逅�
+      document.body.classList.remove('is-loading'); 
+      document.body.classList.add('loaded');
+  
+      // 繝医ャ繝励�繝ｼ繧ｸ縺ｮ縺ｿ .fv__image 縺ｫ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ
+      if (document.body.classList.contains('page-top')) {
+        const fvImage = document.querySelector('.fv__image');
+        if (fvImage) {
+          fvImage.classList.add('is-animate');
+        }
+      }
+    }, 1000); // opacity transition譎る俣縺ｫ蜷医ｏ縺帙ｋ
+  }
+  
+  window.addEventListener('load', function () {
+    const isFirstLoad = sessionStorage.getItem('isFirstLoad');
+    const loading = document.getElementById('loading');
+    const logo = loading.querySelector('img');
+  
+    if (!isFirstLoad) {
+      loading.style.display = 'block';
+  
+      // 蜀咲函遒ｺ螳溷喧�壻ｸ蠎ｦ螟悶＠縺ｦ蜀堺ｻ倅ｸ�
+      logo.classList.remove('fadeup');
+      void logo.offsetWidth;
+      logo.classList.add('fadeup');
+  
+      // 繝ｭ繧ｴ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ邨ゆｺ�ｾ後↓繝ｭ繝ｼ繝�ぅ繝ｳ繧ｰ邨ゆｺ�
+      setTimeout(() => {
+        loadingStop();
+      }, 1500);
+      sessionStorage.setItem('isFirstLoad', 'true');
+    } else {
+      if (loading) loading.style.display = 'none';
+      document.body.classList.remove('is-loading'); // これを追加
+      document.body.classList.add('loaded');
+      
+      if (document.body.classList.contains('page-top')) {
+        const fvImage = document.querySelector('.fv__image');
+        if (fvImage) {
+          fvImage.classList.add('is-animate');
+        }
+      }
+    }
+  });
+  </script>
 </head>
-<body class="page-top">
+<body class="page-top is-loading">
   <div id="loading">
     <div class="kvArea" id="loading_box">
       <div class="img_box">
