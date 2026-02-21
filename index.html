@@ -15,8 +15,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+JP:wght@200..900&family=Zen+Kaku+Gothic+New&family=Zen+Old+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=M+PLUS+Rounded+1c:wght@700&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+JP:wght@200..900&family=Zen+Kaku+Gothic+New&family=Zen+Old+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=M+PLUS+Rounded+1c:wght@700&family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- プロジェクトCSS -->
   <link rel="stylesheet" type="text/css" href="css/slick.css"/>
@@ -93,23 +92,21 @@
     // ========================
     function loadingStop() {
     const loading = document.getElementById('loading');
-    loading.classList.add('loadingNone'); // 繝輔ぉ繝ｼ繝峨い繧ｦ繝磯幕蟋�
+    loading.classList.add('loadingNone');
   
     setTimeout(() => {
-      loading.style.display = 'none'; // 螳悟�髱櫁｡ｨ遉ｺ
+      loading.style.display = 'none';
   
-      // 繝ｭ繝ｼ繝�ぅ繝ｳ繧ｰ螳御ｺ�ｾ悟�逅�
       document.body.classList.remove('is-loading'); 
       document.body.classList.add('loaded');
   
-      // 繝医ャ繝励�繝ｼ繧ｸ縺ｮ縺ｿ .fv__image 縺ｫ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ
       if (document.body.classList.contains('page-top')) {
         const fvImage = document.querySelector('.fv__image');
         if (fvImage) {
           fvImage.classList.add('is-animate');
         }
       }
-    }, 1000); // opacity transition譎る俣縺ｫ蜷医ｏ縺帙ｋ
+    }, 1000); 
   }
   
   window.addEventListener('load', function () {
@@ -120,19 +117,17 @@
     if (!isFirstLoad) {
       loading.style.display = 'block';
   
-      // 蜀咲函遒ｺ螳溷喧�壻ｸ蠎ｦ螟悶＠縺ｦ蜀堺ｻ倅ｸ�
       logo.classList.remove('fadeup');
       void logo.offsetWidth;
       logo.classList.add('fadeup');
   
-      // 繝ｭ繧ｴ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ邨ゆｺ�ｾ後↓繝ｭ繝ｼ繝�ぅ繝ｳ繧ｰ邨ゆｺ�
       setTimeout(() => {
         loadingStop();
       }, 1500);
       sessionStorage.setItem('isFirstLoad', 'true');
     } else {
       if (loading) loading.style.display = 'none';
-      document.body.classList.remove('is-loading'); // これを追加
+      document.body.classList.remove('is-loading'); 
       document.body.classList.add('loaded');
       
       if (document.body.classList.contains('page-top')) {
@@ -195,9 +190,6 @@
           </li>
           <li class="header__item">
             <a class="header__link header__mail-link" href="contact.html">
-              <span class="contact__mail-icon">
-                <img src="img/メールの無料アイコンその8 2 (1).png" alt="メールアイコン">
-              </span>
               お問い合わせ
             </a>
           </li>
@@ -215,8 +207,8 @@
     </div>
   </header>      
   
-  <div class="container fw-700">
-    <aside class="sidebar">
+  <div class="container">
+    <aside class="sidebar fw-700">
         <div class="sidebar__inner">
           <div class="sidebar__logo">
             <a class="sidebar__logo-link" href="index.html">
@@ -258,7 +250,7 @@
               </li>
               <li class="sidebar__item">
                 <a class="sidebar__link no-before-after sidebar__mail" href="contact.html">
-                    <img src="img/メールの無料アイコンその8 2 (1).png" alt="メールアイコン">
+                    <img src="img/mail-icon.png" alt="メールアイコン">
                     <span>
                         お問い合わせ
                     </span>
@@ -275,7 +267,7 @@
                 <div class="fv__image">
                     <img class="pc-only" src="img/first-view 1.png" alt="青牡丹工務店のトップ画像">
                     <img class="sp-only" src="img/first-view-sp 1.png" alt="青牡丹工勥店のトップ画像">
-                    <div class="fv__content">
+                    <div class="fv__content fw-700">
                         <h2 class="fv__title">理想を、カタチに</h2>
                         <p class="fv__subtitle">
                             住宅購入は一生に一度あるかないかの、大きな買い物です。<br>
@@ -303,7 +295,7 @@
                         <div class="slick-item"><img src="img/Firefly 設計図を書いてる老齢作業員 87150 1.png" alt=""></div>
                       </div>
                       <div class="about__catch">
-                        <h2 class="about__catch-title bg-gray">
+                        <h2 class="about__catch-title bg-gray fw-700">
                           <span class="about__catch-title-blue fc-blue">丁寧な家造り</span>で<br>理想を現実に
                         </h2>
                       </div>
@@ -314,7 +306,7 @@
                   </div>
                   <div class="about__body">
                     <div class="sec__title">
-                      <p class="sec__sub-title">私達について</p>
+                      <p class="sec__sub-title fw-700">私達について</p>
                       <h2 class="sec__main-title heading-en">ABOUT</h2>
                     </div>
                     <p class="sec__text">
@@ -331,7 +323,7 @@
           <div class="service__inner">
             <div class="service__header">
               <div class="sec__title">
-                <p class="sec__sub-title">事業内容</p>
+                <p class="sec__sub-title fw-700">事業内容</p>
                 <h2 class="sec__main-title heading-en">SERVICE</h2>
               </div>
               <div class="service__header-image">
@@ -344,8 +336,8 @@
                   <img src="img/house01 1.png" alt="住宅建築・リフォーム画像">
                 </div>
                 <div class="service__body-item-content">
-                  <div class="service__item-header">
-                    <span class="service__body-item-num heading-en fc-light-blue ml-minus-20">01</span>
+                  <div class="service__item-header fw-700">
+                    <span class="service__body-item-num heading-en fc-light-blue ml-minus-18">01</span>
                     <h3 class="service__body-item-title bg-white">住宅建築・リフォーム</h3>
                   </div>
                   <p class="service__body-item-text">
@@ -358,7 +350,7 @@
               </div>
               <div class="service__body-item reverse">
                 <div class="service__body-item-content">
-                  <div class="service__item-header">
+                  <div class="service__item-header fw-700">
                     <span class="service__body-item-num heading-en fc-light-blue ml-minus-70">02</span>
                     <h3 class="service__body-item-title bg-white">法人新築・リフォーム</h3>
                   </div>
@@ -378,8 +370,8 @@
                   <img src="img/house03 1.png" alt="公共工事画像">
                 </div>
                 <div class="service__body-item-content">
-                  <div class="service__item-header">
-                    <span class="service__body-item-num heading-en fc-light-blue ml-minus-20">03</span>
+                  <div class="service__item-header fw-700">
+                    <span class="service__body-item-num heading-en fc-light-blue ml-minus-18">03</span>
                     <h3 class="service__body-item-title bg-white">公共工事</h3>
                   </div>
                   <p class="service__body-item-text">
@@ -396,7 +388,7 @@
         <section id="news" class="news">
           <div class="news__inner">
             <div class="sec__title">
-              <p class="sec__sub-title">お知らせ</p>
+              <p class="sec__sub-title fw-700">お知らせ</p>
               <h2 class="sec__main-title heading-en">NEWS</h2>
             </div>
             <ul class="news__list">
@@ -568,7 +560,7 @@
           <div class="contact__inner">
             <div class="contact__content">
               <div class="sec__title">
-                <p class="sec__sub-title">お問い合わせ</p>
+                <p class="sec__sub-title fw-700">お問い合わせ</p>
                 <h2 class="sec__main-title heading-en">CONTACT</h2>
               </div>
               <div class="contact__body">
@@ -577,7 +569,7 @@
                     <p class="contact__big heading-en ">
                       Tel
                     </p>
-                    <p class="contact__small">
+                    <p class="contact__small fw-700">
                       お電話
                     </p>
                   </li>
@@ -585,7 +577,7 @@
                     <p class="contact__big heading-en ">
                       0000-000-0000
                     </p>
-                    <p class="contact__small">
+                    <p class="contact__small fw-700">
                       営業時間10:00-20:00
                     </p>
                   </li>
