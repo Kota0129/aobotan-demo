@@ -2,16 +2,30 @@ $(function () {
   // ========================
   // サイドバー hover
   // ========================
-  $('.sidebar__item').hover(
-    function () {
+// PC（1025px以上）hover
+$('.sidebar__item').hover(
+  function () {
+    if (window.innerWidth > 1024) {
       $(this).find('.sidebar__submenu').stop(true, true).slideDown();
       $(this).find('.sidebar__link').addClass('active');
-    },
-    function () {
+    }
+  },
+  function () {
+    if (window.innerWidth > 1024) {
       $(this).find('.sidebar__submenu').stop(true, true).slideUp();
       $(this).find('.sidebar__link').removeClass('active');
     }
-  );
+  }
+);
+
+// タブレット・SP（1024px以下）click
+$('.sidebar__link').on('click', function (e) {
+  if (window.innerWidth <= 1024) {
+    e.preventDefault();
+    $(this).next('.sidebar__submenu').stop(true, true).slideToggle();
+    $(this).toggleClass('active');
+  }
+});
 
   // ========================
   // slickスライダー
@@ -57,11 +71,20 @@ $(function () {
   // ========================
   // メニュー開閉
   // ========================
+  function closeMenu() {
+    $('.btn-trigger').removeClass('active');
+    $('.header__nav-wrapper').removeClass('is-active');
+    $('body').removeClass('is-fixed');
+  }
+  
   $('.btn-trigger').on('click', function () {
     $(this).toggleClass('active');
     $('.header__nav-wrapper').toggleClass('is-active');
     $('body').toggleClass('is-fixed');
   });
+  
+  $('.header__nav-wrapper .header__link').on('click', closeMenu);
+
 
   // ========================
   // フォームのバリデーション（Vanilla JS）
