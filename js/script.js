@@ -86,6 +86,8 @@ $('.sidebar__link').on('click', function (e) {
   $('.header__nav-wrapper .header__link').on('click', closeMenu);
 
 
+
+
   // ========================
   // フォームのバリデーション（Vanilla JS）
   // ========================
