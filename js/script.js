@@ -82,10 +82,20 @@ $('.sidebar__link').on('click', function (e) {
     $('.header__nav-wrapper').toggleClass('is-active');
     $('body').toggleClass('is-fixed');
   });
+
+  $('.header__nav-wrapper .header__link').on('click', function() {
+    const href = $(this).attr('href');
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+    const isAnchor = href.startsWith('#');
+    const isSamePageAnchor = href.includes('#') && href.split('#')[0] === currentPath;
+
+    if (isAnchor || isSamePageAnchor) {
+      closeMenu();
+    } 
+  });
   
-  $('.header__nav-wrapper .header__link').on('click', closeMenu);
-
-
+  // $('.header__nav-wrapper .header__link').on('click', closeMenu);
 
 
   // ========================
